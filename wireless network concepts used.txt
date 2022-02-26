@@ -1,0 +1,18 @@
+>WEP-Wired Equivalent Privacy
+
+*security protocol
+*specified in the Wireless Fidelity (Wi-Fi) standard,
+*That standard is designed to provide a wireless local area network (WLAN) with a level of security and privacy comparable to what is usually expected of a wired LAN.
+*WEP encrypts all traffic using a 64 or 128 bit key in hexadecimal.
+
+>SSID-service Set Identifier.
+* An SSID is a unique ID that consists of 32 characters and is used for naming wireless networks. *Each packet sent over a wireless network includes the SSID, which ensures that the data being sent over the air arrives at the correct location.
+
+>>Access Point
+*An access point is a device that creates a wireless local area network, or WLAN, usually in an office or large building.
+*An access point connects to a wired router, switch, or hub via an Ethernet cable, and projects a Wi-Fi signal to a designated area.
+
+>>Sniffer
+*in this project it helps to track the last ip address used by user to access the server.
+*A network sniffer, also known as a packet analyzer, is either software or hardware that can intercept data packets as they travel across a network.
+*Admins use network sniffers to monitor network traffic at the packet level, helping ensure network health and security.

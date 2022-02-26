@@ -1,0 +1,63 @@
+
+VPN implementation steps:
+
+1. ACL - Access Control Lists
+
+   access-list 100 permit ip from-ip-add from-ip-wild card
+   to-ip-add to-ip-wildcard
+
+access-list 100 permit ip 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255
+******************************************************************************************
+
+2. ISAKMP(Internet Security Association Key Management Protocol) policy
+
+  crypto name policy 10
+encryption aes 256
+authentication pre-share
+group 5
+
+>>crypto isakmp policy 10
+ encryption aes 256
+ authentication pre-share
+ group 5
+*****************************************************************************************
+
+3. ISAKMP key
+
+crypto isakmp key password address peer-router-add
+
+crypto isakmp key secretkey address 209.165.200.1
+*******************************************************************************************
+
+4. ISAKMP Transform
+
+crypto ipsec transform-set name esp-aes 256 esp-shahmac
+
+crypto ipsec transform-set Router0->Router2 esp-aes 256 esp-sha-hmac
+*******************************************************************************************
+
+5. ISAKMP map
+
+crypto map IPSEC-MAP 10 ipsec-name
+set peer peer-adds
+set pfs deffie-hellman-group
+set security-association lifetime seconds 86400
+set transform-set-name
+match address 100
+
+crypto map IPSEC-MAP 10 ipsec-isakmp 
+ set peer 209.165.200.1
+ set pfs group5
+ set security-association lifetime seconds 86400
+ set transform-set Router0->Router2 
+ match address 100
+*******************************************************************************************
+
+6.ISAKMP Apply
+
+interface name
+crypto map IPSEC-MAP
+
+interface GigabitEthernet0/0
+ crypto map IPSEC-MAP
+******************************************************************************************
